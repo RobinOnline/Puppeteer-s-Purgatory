@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Test Description
   icon: {fileID: 0}
   prefab: {fileID: 5803398218703863722, guid: ef35de7e08c9fef4d98d768e46ea324e, type: 3}
-  toolType: 0
+  toolType: 1

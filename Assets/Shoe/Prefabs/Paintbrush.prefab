@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 90352442798195311}
   - component: {fileID: 7306496285485360269}
   m_Layer: 0
-  m_Name: One
+  m_Name: Paintbrush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
