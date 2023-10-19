@@ -10,6 +10,16 @@ public class PlayerPickUp : MonoBehaviour
     private Camera cam;
 
     private Inventory inv;
+
+    public static PlayerPickUp instance;
+
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
     private void Start()
     {
         GetRef();
