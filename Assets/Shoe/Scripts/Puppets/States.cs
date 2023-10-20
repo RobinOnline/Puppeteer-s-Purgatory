@@ -25,6 +25,25 @@ public class States
     protected States nextState;
     protected float counter;
 
+    public States()
+    {
+
+    }
+
+    public States Process()
+    {
+        if (stage == EVENTS.START) Start();
+
+        if (stage == EVENTS.UPDATE) Update();
+
+        if (stage == EVENTS.EXIT)
+        {
+            Exit();
+            return nextState;
+        }
+        return this;
+    }
+
     public class Idle : States
     {
         public Idle() : base()
@@ -39,6 +58,57 @@ public class States
 
         public override void Update()
         {
+            nextState = new Patrol();
+            stage = EVENTS.EXIT;
+
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+    }
+
+    public class Patrol : States
+    {
+        public Patrol() : base()
+        {
+            name = STATES.PATROL;
+        }
+
+        public override void Start()
+        {
+            Debug.Log("Patrol");
+            base.Start();
+        }
+
+        public override void Update()
+        {
+            PuppetStateMachine.instance.DetectCharacter();
+            base.Update();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+    }
+
+    public class Hunt : States
+    {
+        public Hunt() : base()
+        {
+            name = STATES.HUNT;
+        }
+
+        public override void Start()
+        {
+            base.Start();
+        }
+
+        public override void Update()
+        {
+            PuppetStateMachine.instance.DetectCharacter();
             base.Update();
         }
 
