@@ -7,15 +7,11 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float sensitivity = 2f;
     private float cameraVerticalRotation = 0f;
-
-    private void Start()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    private bool isActive = true;
 
     private void Update()
     {
+        if (!isActive) { return; }
         float inputX = Input.GetAxis("Mouse X") * sensitivity;
         float inputY = Input.GetAxis("Mouse Y") * sensitivity;
 
@@ -24,5 +20,10 @@ public class CameraMovement : MonoBehaviour
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
         player.Rotate(Vector3.up * inputX);
+    }
+
+    public void SetCameraMovement(bool active)
+    {
+        isActive = active;
     }
 }
