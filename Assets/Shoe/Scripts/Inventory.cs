@@ -1,10 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private Tools[] tools;
+    [SerializeField] public Tools OnHands;
+
+    [SerializeField] private GameObject[] invImg;
+    [SerializeField] private PlayerMovement playerScript;
+    [SerializeField] private CameraMovement camScript;
+
+    public GameObject InventoryUI;
+    public GameObject flashlight;
+
+    public static Inventory instance;
+
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
 
 
     private void Start()
@@ -14,6 +33,18 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        if (tools[12] != null)
+        {
+            flashlight.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            playerScript.enabled = !playerScript.isActiveAndEnabled;
+            camScript.enabled = !camScript.isActiveAndEnabled;
+            InventoryUI.SetActive(!InventoryUI.activeSelf);
+            DisplayInventory();
+        }
     }
 
     public void AddItem(Tools newItem)
@@ -30,8 +61,30 @@ public class Inventory : MonoBehaviour
         
     }
 
+    public void ChooseTool(ToolType Type)
+    {
+
+    }
+
+    public void DisplayInventory()
+    {
+        for (int i = 0; i < tools.Length; i++)
+        {
+            if (tools[i] != null)
+            {
+                invImg[i].transform.gameObject.SetActive(true);
+            }
+        }
+    }
+
     private void InitVariables()
     {
-        tools = new Tools[3];
+        playerScript = GetComponent<PlayerMovement>();
+        camScript = GetComponentInChildren<CameraMovement>();
+        tools = new Tools[13];
+        if (InventoryUI != null)
+        {
+            InventoryUI.SetActive(false);
+        }
     }
 }
