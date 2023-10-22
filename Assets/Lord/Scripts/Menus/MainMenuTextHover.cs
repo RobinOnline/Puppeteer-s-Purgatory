@@ -31,5 +31,7 @@ public class MainMenuTextHover : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public void OnPointerClick(PointerEventData eventData)
     {
         SoundManager.Instance.PlayEffect("MenuClick");
+        text.rectTransform.localScale = new Vector3(1f, 1f, 1f);
+        text.color = whiteFade;
     }
 }
