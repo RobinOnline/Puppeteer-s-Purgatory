@@ -15,5 +15,6 @@ MonoBehaviour:
   Name: Small Hammer
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 3575891574965166065, guid: d605c27160ec75e43a13d1a188b26ca9, type: 3}
   toolType: 6
+  grabType: 2

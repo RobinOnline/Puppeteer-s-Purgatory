@@ -15,5 +15,6 @@ MonoBehaviour:
   Name: Nail Puller
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 291495176905515168, guid: 0f8776e2cc19e5c42a20dbe5dab273df, type: 3}
   toolType: 4
+  grabType: 2

@@ -17,3 +17,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   prefab: {fileID: 0}
   toolType: 3
+  grabType: 2

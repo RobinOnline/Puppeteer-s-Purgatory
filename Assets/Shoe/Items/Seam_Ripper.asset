@@ -15,5 +15,6 @@ MonoBehaviour:
   Name: Seam_Ripper
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 8725896955432561016, guid: c9350c58cfdb71d4eaaed531c63e5c27, type: 3}
   toolType: 2
+  grabType: 2

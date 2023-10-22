@@ -15,5 +15,6 @@ MonoBehaviour:
   Name: Wood
   description: I can paint the puppets with this.
   icon: {fileID: 0}
-  prefab: {fileID: 5806562844746210012, guid: cb916a0229084c14dad8ad81c679aa2c, type: 3}
+  prefab: {fileID: 8595512397618180437, guid: 3f1fcdc091c186a448da75f69a775d17, type: 3}
   toolType: 1
+  grabType: 1

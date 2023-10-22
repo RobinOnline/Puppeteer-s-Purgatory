@@ -9,5 +9,6 @@ public class ItemOBJ : MonoBehaviour
     public void OnPress()
     {
         Inventory.instance.OnHands = this.item as Tools;
+        EquipmentManager.instance.EquipTool(Inventory.instance.OnHands.prefab);
     }
 }

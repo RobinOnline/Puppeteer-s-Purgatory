@@ -5,11 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Tool", menuName = "Items/Tool")]
 public class Tools : Item
 {
-    [SerializeField] private GameObject prefab;
+    public GameObject prefab;
     public ToolType toolType;
+    public GrabType grabType;
 
     
 }
 
 public enum ToolType { Nails, Wood, Seam_Ripper, Scissors, Nail_Puller, Small_Pry_Bar, Small_Hammer, Soap, 
     Bleach, Watercolour, Varnish, Sewing_Kit, Flashlight }
+
+public enum GrabType {Idle, Hold, Grab}
