@@ -78,14 +78,20 @@ public class States
 
         public override void Start()
         {
+            PuppetStateMachine.instance.State = STATES.PATROL;
             Debug.Log("Patrol");
             base.Start();
         }
 
         public override void Update()
         {
+            PuppetStateMachine.instance.Patrol();
             PuppetStateMachine.instance.DetectCharacter();
-            base.Update();
+            if (PuppetStateMachine.instance.target != null)
+            {
+                nextState = new Hunt();
+                stage = EVENTS.EXIT;
+            }
         }
 
         public override void Exit()
@@ -108,8 +114,15 @@ public class States
 
         public override void Update()
         {
+            PuppetStateMachine.instance.State = STATES.HUNT;
             PuppetStateMachine.instance.DetectCharacter();
-            base.Update();
+            PuppetStateMachine.instance.Hunt();
+
+            if (PuppetStateMachine.instance.target == null)
+            {
+                nextState = new Patrol();
+                stage = EVENTS.EXIT;
+            }
         }
 
         public override void Exit()

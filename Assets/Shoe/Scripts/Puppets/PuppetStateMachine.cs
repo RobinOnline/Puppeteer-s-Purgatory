@@ -11,6 +11,7 @@ public class PuppetStateMachine : MonoBehaviour
     public States currentState;
     [Space]
 
+    [Header("Stats")]
     [SerializeField] private float speed;
     [SerializeField] private float huntSpeed;
     [SerializeField] private float rotationSpeed;
@@ -23,8 +24,12 @@ public class PuppetStateMachine : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private Transform rayOrigin;
     Vector3 _targetDir;
-    [SerializeField] private Transform target;
+    public Transform target;
     [SerializeField] private Transform TransformL, TransformR;
+
+    [Header("Patrol")]
+    public Transform[] Waypoints;
+    public int currentRoom;
 
     [Space]
     Collider[] _targets;
@@ -87,7 +92,17 @@ public class PuppetStateMachine : MonoBehaviour
     }
     public void Patrol()
     {
+        agent.SetDestination(Waypoints[currentRoom].position);
 
+        if (agent.remainingDistance <= .1f)
+        {
+            currentRoom++;
+            
+        }
+        if (currentRoom >= Waypoints.Length)
+        {
+            currentRoom = 0;
+        }
     }
 
     public void Hunt()
