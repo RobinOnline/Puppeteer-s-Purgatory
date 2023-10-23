@@ -15,6 +15,7 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private int Index;
     public GameObject _Puppet;
+    Puppets newPuppet;
     public GameObject EquippedPuppet;
     [SerializeField] private bool equipped;
     [SerializeField] private float Range;
@@ -60,7 +61,7 @@ public class EquipmentManager : MonoBehaviour
             _Puppet = Inventory.instance.OnHands.prefab;
             anim.SetInteger("toolType", 2);
             Debug.Log("AAAAA");
-            
+            newPuppet = hit.transform.GetComponent<ItemOBJ>().item as Puppets;
             Destroy(hit.transform.gameObject);
             EquippedPuppet = Instantiate(_Puppet, ToolHolderL);
             PuppetHolder.gameObject.GetComponent<BoxCollider>().enabled = true;
@@ -78,7 +79,8 @@ public class EquipmentManager : MonoBehaviour
         {
             if (Inventory.instance.OnHands != null)
             {
-                PuppetHolder = hit2.transform;               
+                PuppetHolder = hit2.transform;
+                anim.SetInteger("toolType", 0);
                 Destroy(EquippedPuppet);
                 EquippedPuppet = Instantiate(_Puppet, PuppetHolder);
                 Inventory.instance.OnHands = null;
@@ -99,8 +101,18 @@ public class EquipmentManager : MonoBehaviour
     {
         Quaternion newRotation = Quaternion.Euler(-4, 191, -1);
         EquippedPuppet.transform.rotation = newRotation;
-        Vector3 newScale = new Vector3(.1f, .1f, .1f);
+        Vector3 newScale = new Vector3(.3f, .3f, .3f);
         EquippedPuppet.transform.localScale = newScale;
+        if ((int)newPuppet.puppetNumber == 1)
+        {
+            Vector3 newPos = new Vector3(0.148f, -0.274f, -0.051f);
+            EquippedPuppet.transform.localPosition = newPos;
+        }
+        if ((int)newPuppet.puppetNumber == 2)
+        {
+            Vector3 newPos2 = new Vector3(.156f, -0.241f, -0.097f);
+            EquippedPuppet.transform.localPosition = newPos2;
+        }
         PuppetHolder.gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 }

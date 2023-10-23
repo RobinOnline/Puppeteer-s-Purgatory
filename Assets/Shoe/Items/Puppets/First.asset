@@ -15,5 +15,5 @@ MonoBehaviour:
   Name: First
   description: 
   icon: {fileID: 0}
-  prefab: {fileID: 4632119382520302212, guid: df833c1657a658b4b9448fdad2aa9b48, type: 3}
+  prefab: {fileID: 5626958968382489628, guid: dc1f365ad945d42449ecf329585bbd4f, type: 3}
   puppetNumber: 0
