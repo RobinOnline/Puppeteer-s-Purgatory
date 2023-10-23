@@ -40,17 +40,63 @@ public class PlayerMovement : MonoBehaviour
     private float headBobRange = 0f;
     private float headBobXRange;
 
+    [Space]
+    [Header("Sound Timing")]
+    [SerializeField] private float WalkTiming = 0.7f;
+    [SerializeField] private float SprintTiming = 0.5f;
+    [SerializeField] private float TiredTiming = 0.9f;
+    [SerializeField] private LayerMask HitLayer;
+    [SerializeField] private LayerMask WoodLayer;
+    [SerializeField] private LayerMask GrassLayer;
+    [SerializeField] private string currentSoundId;
+    private float currentTimeSpeed;
+    private float currentSoundTime = 0f;
+    private Ray ray;
+    private RaycastHit raycastHit;
+    private bool soundSet;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         currentSpeed = WalkSpeed;
         sprintMovementTime = SprintTime;
+        currentSoundTime = WalkTiming;
+        currentTimeSpeed = WalkTiming;
     }
 
     private void Update()
     {
         handleMovement();
+        PlayMovingSound();
+    }
+
+    private string CheckGroundLayer()
+    {
+        ray = new Ray(transform.position, transform.up * -1);
+        if (Physics.Raycast(ray, out raycastHit, 1f))
+        {
+            if ((WoodLayer.value & (1 << raycastHit.collider.gameObject.layer)) != 0)
+                return "wood";
+
+            if ((GrassLayer.value & (1 << raycastHit.collider.gameObject.layer)) != 0)
+                return "grass";
+        }
+        return "";
+    }
+
+    private void PlayMovingSound()
+    {
+        if (inputDirection.magnitude > 0)
+        {
+            currentSoundTime += Time.deltaTime;
+            if (currentSoundTime > currentTimeSpeed)
+            {
+                SoundManager.Instance.PlayRandomEffect(currentSoundId);
+                currentSoundTime = 0;
+            }
+        }
+        else
+            currentSoundTime = currentTimeSpeed;
     }
 
     private void handleInputDirection()
@@ -118,16 +164,21 @@ public class PlayerMovement : MonoBehaviour
                 headBobSpeed = walkHeadBobSpeed;
                 headBobRange = yWalkAxisRange;
                 headBobXRange = xAxisRange;
+                currentTimeSpeed = WalkTiming;
+                currentSoundId = CheckGroundLayer() + "-walk";
                 break;
             case PlayerState.Sprint:
                 headBobSpeed = sprintHeadBobSpeed;
                 headBobRange = ySprintAxisRange;
                 headBobXRange = xAxisRange;
+                currentTimeSpeed = SprintTiming;
+                currentSoundId = CheckGroundLayer() + "-run";
                 break;
             case PlayerState.SprintTired:
                 headBobSpeed = sprintTiredHeadBobSpeed;
                 headBobRange = yTiredAxisRange;
                 headBobXRange = xAxisRange;
+                currentTimeSpeed = TiredTiming;
                 break;
             default:
                 headBobSpeed = idleHeadBobSpeed;
@@ -137,7 +188,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (velocity.magnitude <= 0)
+        {
+            soundSet = false;
+            currentSoundId = "";
             playerState = PlayerState.Idle;
+        }
     }
 
     private void handleMovement()

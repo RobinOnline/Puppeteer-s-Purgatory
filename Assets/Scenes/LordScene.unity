@@ -254,7 +254,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: eee0c5b0991dead42ba5c25ade74296e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.687
+  m_Volume: 0.27
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 59607467}
   - component: {fileID: 59607466}
   - component: {fileID: 59607465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3999,7 +3999,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.805
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6445,7 +6445,7 @@ GameObject:
   - component: {fileID: 998902179}
   - component: {fileID: 998902178}
   - component: {fileID: 998902177}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6671,7 +6671,7 @@ GameObject:
   - component: {fileID: 1048569115}
   - component: {fileID: 1048569116}
   - component: {fileID: 1048569117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6752,6 +6752,19 @@ MonoBehaviour:
   yTiredAxisRange: 0.0006
   yIdleAxisRange: 0.0002
   cameraTransform: {fileID: 1158443799}
+  WalkTiming: 0.7
+  SprintTiming: 0.3
+  TiredTiming: 0.9
+  HitLayer:
+    serializedVersion: 2
+    m_Bits: 8055
+  WoodLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  GrassLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  currentSoundId: 
 --- !u!1 &1060403023
 GameObject:
   m_ObjectHideFlags: 0
@@ -7378,7 +7391,7 @@ GameObject:
   - component: {fileID: 1158443797}
   - component: {fileID: 1158443800}
   - component: {fileID: 1158443801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -9192,7 +9205,7 @@ GameObject:
   - component: {fileID: 1451301573}
   - component: {fileID: 1451301572}
   - component: {fileID: 1451301571}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11482,6 +11495,47 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 601f0833f70c388408cc79786ed23902, type: 3}
   - title: type
     audioClip: {fileID: 8300000, guid: 291772cbcc79af04c8e82a910bb3fa0a, type: 3}
+  randomSounds:
+  - id: wood-run
+    sounds:
+    - title: 
+      audioClip: {fileID: 8300000, guid: 64232593c035e7b469707722a5faa915, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: fc9cabf3509d4ea49b041dd931346d63, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: f086d7e05821fe14698632391928a2ff, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: 1b254ce6b8fbe6e479de45eb479ae9dd, type: 3}
+  - id: wood-walk
+    sounds:
+    - title: 
+      audioClip: {fileID: 8300000, guid: c5a2a8a08124f4e4c968a951faf74d35, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: 1b9b5797160d9b246ae152ef05a2f4b3, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: d4df3ca6885417a48bd4a6cbae9fd66b, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: 5dd613dd440711e4d8613d52c815e3a6, type: 3}
+  - id: grass-walk
+    sounds:
+    - title: 
+      audioClip: {fileID: 8300000, guid: 15c64d90482271e4480b3b09d386b7f4, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: b2feafbf297c5f84ea249efb2f259cca, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: 9def33a2b0d0e2b408969981e950d312, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: c3948892364f4c641b2f1ab105914414, type: 3}
+  - id: grass-run
+    sounds:
+    - title: 
+      audioClip: {fileID: 8300000, guid: 329689a0609bef341b6c2fd19bc2785b, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: d7e5259ff3d5e894fa181a9bbb33118d, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: deb674a81b2a30842b2bea915107b302, type: 3}
+    - title: 
+      audioClip: {fileID: 8300000, guid: 08a60678e8049574cbb992005c83bf6d, type: 3}
   musicSource: {fileID: 5697616}
   effectSource: {fileID: 575310552}
 --- !u!4 &1776115965
