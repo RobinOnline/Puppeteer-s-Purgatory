@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6364719913439602993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3376792149267122716}
+  - component: {fileID: 7057459943144336067}
+  m_Layer: 0
+  m_Name: UiManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3376792149267122716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364719913439602993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 390.89954, y: 247.93735, z: -3.1536582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7057459943144336067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364719913439602993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc3c0b391359914aba0e238dc2ed37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panels:
+  - Id: codelock
+    Panel: {fileID: 0}
+    DefaultActive: 0
+  - Id: MainMenu
+    Panel: {fileID: 0}
+    DefaultActive: 0
+  - Id: Setting
+    Panel: {fileID: 0}
+    DefaultActive: 0
+  - Id: Credits
+    Panel: {fileID: 0}
+    DefaultActive: 0
+  - Id: dialogue
+    Panel: {fileID: 0}
+    DefaultActive: 0
+  - Id: InGame
+    Panel: {fileID: 0}
+    DefaultActive: 0
+  cameraMovement: {fileID: 0}
+  sprintSlider: {fileID: 0}

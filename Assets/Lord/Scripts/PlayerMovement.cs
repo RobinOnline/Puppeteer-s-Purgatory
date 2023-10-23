@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sound Timing")]
     [SerializeField] private float WalkTiming = 0.7f;
     [SerializeField] private float SprintTiming = 0.3f;
-    [SerializeField] private float TiredTiming = 0.9f;
+    [SerializeField] private float TiredTiming = 3f;
     [SerializeField] private LayerMask WoodLayer;
     [SerializeField] private LayerMask GrassLayer;
     [SerializeField] private string currentSoundId;
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     private string CheckGroundLayer()
     {
         ray = new Ray(transform.position, transform.up * -1);
-        if (Physics.Raycast(ray, out raycastHit, 1f))
+        if (Physics.Raycast(ray, out raycastHit, 3f))
         {
             if ((WoodLayer.value & (1 << raycastHit.collider.gameObject.layer)) != 0)
                 return "wood";
@@ -177,6 +177,7 @@ public class PlayerMovement : MonoBehaviour
                 headBobRange = yTiredAxisRange;
                 headBobXRange = xAxisRange;
                 currentTimeSpeed = TiredTiming;
+                currentSoundId = "heavy-breathing";
                 break;
             default:
                 headBobSpeed = idleHeadBobSpeed;

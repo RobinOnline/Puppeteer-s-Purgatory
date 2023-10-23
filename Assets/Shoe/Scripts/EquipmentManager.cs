@@ -40,14 +40,14 @@ public class EquipmentManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             EquipPuppet();
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             DropPuppet();
         }
-        
+
     }
 
     public void EquipPuppet()
@@ -60,14 +60,13 @@ public class EquipmentManager : MonoBehaviour
             Inventory.instance.OnHands = hit.transform.gameObject.GetComponent<ItemOBJ>().item as Puppets;
             _Puppet = Inventory.instance.OnHands.prefab;
             anim.SetInteger("toolType", 2);
-            Debug.Log("AAAAA");
             newPuppet = hit.transform.GetComponent<ItemOBJ>().item as Puppets;
             Destroy(hit.transform.gameObject);
             EquippedPuppet = Instantiate(_Puppet, ToolHolderL);
             PuppetHolder.gameObject.GetComponent<BoxCollider>().enabled = true;
             equipped = true;
         }
-        
+
     }
 
     public void DropPuppet()
