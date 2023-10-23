@@ -36,6 +36,9 @@ public class CodeLock : MonoBehaviour
                     UiManager.Instance.ClosePanel("codelock");
                 });
             });
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            PlayerPickUp.instance.SetTrue();
         }
         else
         {

@@ -11,6 +11,9 @@ public class PuppetRestoration : MonoBehaviour
     private int currentStateIndex;
     private bool haveStageToDo = true;
 
+    [SerializeField] private int RepairedPuppets;
+    public GameObject PuppetMonster;
+
     private void Start()
     {
         foreach (RestorationStage stage in restorationStages)
@@ -95,6 +98,7 @@ public class RestorationStage
     public GameObject Obj;
     public float DoTime;
     public bool Done;
+    public int RestorationsDone;
     // add like value and goal 
     // from inventory to here and sum or decrese it
 }
