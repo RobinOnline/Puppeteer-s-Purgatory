@@ -43,9 +43,8 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Sound Timing")]
     [SerializeField] private float WalkTiming = 0.7f;
-    [SerializeField] private float SprintTiming = 0.5f;
+    [SerializeField] private float SprintTiming = 0.3f;
     [SerializeField] private float TiredTiming = 0.9f;
-    [SerializeField] private LayerMask HitLayer;
     [SerializeField] private LayerMask WoodLayer;
     [SerializeField] private LayerMask GrassLayer;
     [SerializeField] private string currentSoundId;
@@ -53,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private float currentSoundTime = 0f;
     private Ray ray;
     private RaycastHit raycastHit;
-    private bool soundSet;
 
     private void Start()
     {
@@ -189,7 +187,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (velocity.magnitude <= 0)
         {
-            soundSet = false;
             currentSoundId = "";
             playerState = PlayerState.Idle;
         }
