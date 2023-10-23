@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class UiManager : MonoBehaviour
 {
     public static UiManager Instance;
     [SerializeField] private List<UiPanel> panels = new();
     [SerializeField] private CameraMovement cameraMovement;
+    [SerializeField] private Image sprintSlider;
     private bool cursorActive;
     private bool allPanelClosed;
+    private Color sprintSliderColor;
     private void Awake()
     {
         if (Instance == null)
@@ -27,6 +31,8 @@ public class UiManager : MonoBehaviour
                 panel.Panel.gameObject.SetActive(false);
             else
                 panel.Panel.gameObject.SetActive(true);
+
+        sprintSliderColor = sprintSlider.color;
 
         SetCursorActivation(true);
         OpenPanel("MainMenu");
@@ -69,6 +75,17 @@ public class UiManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             cameraMovement.SetCameraMovement(false);
         }
+    }
+
+    public void UpdateSprintTime(float value)
+    {
+        sprintSlider.fillAmount = value / 100;
+        if (sprintSlider.fillAmount < 0.5f && sprintSlider.fillAmount > 0.2f)
+            sprintSlider.DOColor(Color.yellow, 0.5f);
+        else if (sprintSlider.fillAmount < 0.2f)
+            sprintSlider.DOColor(Color.red, 0.5f);
+        else
+            sprintSlider.color = sprintSliderColor;
     }
 }
 

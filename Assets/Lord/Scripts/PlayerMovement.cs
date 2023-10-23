@@ -63,10 +63,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void handleSpeed()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && canSprint)
+        if (Input.GetKey(KeyCode.LeftShift) && canSprint && inputDirection.magnitude > 0)
         {
             currentSpeed = SprintSpeed;
             sprintMovementTime -= Time.deltaTime * SprintReduceSpeed;
+            UiManager.Instance.UpdateSprintTime(sprintMovementTime * 100 / SprintTime);
             playerState = PlayerState.Sprint;
         }
         else
@@ -75,7 +76,10 @@ public class PlayerMovement : MonoBehaviour
             if (canSprint && velocity.magnitude > 0)
                 playerState = PlayerState.Walk;
             if (sprintMovementTime <= SprintTime)
+            {
                 sprintMovementTime += Time.deltaTime * SprintIncreaseSpeed;
+                UiManager.Instance.UpdateSprintTime(sprintMovementTime * 100 / SprintTime);
+            }
         }
 
         if (sprintMovementTime > SprintRefuelWaitTime)
