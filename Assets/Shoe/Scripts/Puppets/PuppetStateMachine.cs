@@ -34,6 +34,7 @@ public class PuppetStateMachine : MonoBehaviour
     [Space]
     Collider[] _targets;
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Animator anim;
 
     public static PuppetStateMachine instance;
 
@@ -48,6 +49,7 @@ public class PuppetStateMachine : MonoBehaviour
     private void Start()
     {
         currentState = new Idle();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -93,7 +95,7 @@ public class PuppetStateMachine : MonoBehaviour
     public void Patrol()
     {
         agent.SetDestination(Waypoints[currentRoom].position);
-
+        anim.SetBool("Hunting", false);
         if (agent.remainingDistance <= .1f)
         {
             currentRoom++;
@@ -109,6 +111,7 @@ public class PuppetStateMachine : MonoBehaviour
     {
         if (target != null)
         {
+            anim.SetBool("Hunting", true);
             agent.SetDestination(target.position);
             agent.speed = speed;
             if (agent.remainingDistance <= 1f)
