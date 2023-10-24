@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private Tools[] tools;
+    [SerializeField] public Tools[] tools;
     [SerializeField] public Puppets OnHands;
 
     [SerializeField] private GameObject[] invImg;

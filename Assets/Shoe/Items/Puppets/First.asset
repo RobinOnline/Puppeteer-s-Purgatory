@@ -17,3 +17,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   prefab: {fileID: 5626958968382489628, guid: dc1f365ad945d42449ecf329585bbd4f, type: 3}
   puppetNumber: 0
+  RestorationProcess: 02000000

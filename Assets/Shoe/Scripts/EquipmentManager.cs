@@ -9,6 +9,7 @@ public class EquipmentManager : MonoBehaviour
     public Transform PuppetHolder = null;
     [SerializeField] private LayerMask puppetLayer;
     [SerializeField] private LayerMask holderLayer;
+    [SerializeField] public LayerMask RestorationLayer;
     [Space]
     [Header("To Assign")]
     [SerializeField] private Camera cam;
@@ -48,6 +49,18 @@ public class EquipmentManager : MonoBehaviour
             DropPuppet();
         }
 
+        Ray ray2 = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit2;
+
+        if (Physics.Raycast(ray2, out hit2, Range, holderLayer) && equipped)
+        {
+            PlayerPickUp.instance.Text.text = "Press F to put the puppet in place";
+        }
+        else
+        {
+            PlayerPickUp.instance.Text.text = " ";
+        }
+
     }
 
     public void EquipPuppet()
@@ -63,7 +76,6 @@ public class EquipmentManager : MonoBehaviour
             newPuppet = hit.transform.GetComponent<ItemOBJ>().item as Puppets;
             Destroy(hit.transform.gameObject);
             EquippedPuppet = Instantiate(_Puppet, ToolHolderL);
-            PuppetHolder.gameObject.GetComponent<BoxCollider>().enabled = true;
             equipped = true;
         }
 
@@ -82,6 +94,10 @@ public class EquipmentManager : MonoBehaviour
                 anim.SetInteger("toolType", 0);
                 Destroy(EquippedPuppet);
                 EquippedPuppet = Instantiate(_Puppet, PuppetHolder);
+                Restoration.instance.enabled = true;
+                Restoration.instance.Papeto = EquippedPuppet;
+                Restoration.instance.currentPuppet = EquippedPuppet.GetComponent<ItemOBJ>().item as Puppets;
+                Restoration.instance.On = true;
                 Inventory.instance.OnHands = null;
                 RotationAndScale();
                 equipped = false;
@@ -112,6 +128,5 @@ public class EquipmentManager : MonoBehaviour
             Vector3 newPos2 = new Vector3(.156f, -0.241f, -0.097f);
             EquippedPuppet.transform.localPosition = newPos2;
         }
-        PuppetHolder.gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 }

@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerPickUp : MonoBehaviour
 {
     [SerializeField] private float Range;
     [SerializeField] private LayerMask pickUpLayer;
     [SerializeField] private LayerMask keyPadLayer;
+    [SerializeField] private LayerMask ladderLayer;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private CameraMovement camMov;
+    [SerializeField] private GameObject PlayerOBJ;
+    public GameObject Canvas;
+    public TextMeshProUGUI Text;
 
+    [Space]
+    public GameObject StartLadder;
+    public GameObject EndLadder;
+    [Space]
     public GameObject CodeLock;
     public GameObject InGame;
     public Animation DoorOpen;
@@ -37,6 +46,19 @@ public class PlayerPickUp : MonoBehaviour
         {
             RaycastTool();
             RaycastKeyPad();
+            RaycastRestoration();
+            RaycastLadder1();
+            RaycastLadder2();
+        }
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Range, pickUpLayer))
+        {
+            Text.text = hit.transform.name;
+        }
+        else
+        {
+            Text.text = " ";
         }
     }
 
@@ -71,6 +93,51 @@ public class PlayerPickUp : MonoBehaviour
         }
     }
 
+    private void RaycastRestoration()
+    {
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+        if (Restoration.instance.enabled == true)
+        {
+            if (Physics.Raycast(ray, out hit, Range, EquipmentManager.instance.RestorationLayer))
+            {
+                Restoration.instance.Repair();
+            }
+        }
+        
+    }
+
+    private void RaycastLadder1()
+    {
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Range, ladderLayer))
+        {
+            if (StartLadder.GetComponent<BoxCollider>().enabled == true)
+            {
+                Canvas.SetActive(false);
+                PlayerOBJ.SetActive(false);
+                PlayerOBJ.transform.position = EndLadder.transform.position;                
+                PlayerOBJ.SetActive(true);
+            }
+            
+        }
+    }
+
+    private void RaycastLadder2()
+    {
+        Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Range, ladderLayer))
+        {
+            Canvas.SetActive(false);
+            PlayerOBJ.SetActive(false);
+                PlayerOBJ.transform.position = StartLadder.transform.position;
+                PlayerOBJ.SetActive(true);
+
+        }
+    }
+
     public void SetTrue()
     {
         DoorOpen.Play();
@@ -86,5 +153,6 @@ public class PlayerPickUp : MonoBehaviour
         inv = GetComponent<Inventory>();
         playerMovement = GetComponent<PlayerMovement>();
         camMov = GetComponentInChildren<CameraMovement>();
+        PlayerOBJ = this.transform.gameObject;
     }
 }

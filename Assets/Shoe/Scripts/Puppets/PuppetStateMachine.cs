@@ -117,6 +117,7 @@ public class PuppetStateMachine : MonoBehaviour
             if (agent.remainingDistance <= 1f)
             {
                 agent.velocity = Vector3.zero;
+                SceneManager.LoadScene(1);
             }
         }
     }

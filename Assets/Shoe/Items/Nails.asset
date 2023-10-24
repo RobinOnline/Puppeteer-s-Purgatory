@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Nails
   m_EditorClassIdentifier: 
   Name: Nails
-  description: I'm gonna need this to set the puppets apart.
+  description: 
   icon: {fileID: 0}
   prefab: {fileID: 2536539840505781670, guid: 137379c542c4bb34582180ff4909c420, type: 3}
   toolType: 0
-  grabType: 1
